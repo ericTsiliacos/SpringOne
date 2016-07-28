@@ -23,9 +23,9 @@ public class NotebookController {
     }
 
     @RequestMapping(value = "notebook", method = RequestMethod.POST)
-    public ResponseEntity<Notebook> saveNotebook(@RequestBody Notebook notebook) {
+    public ResponseEntity<Notebook> saveOrUpdateNotebook(@RequestBody Notebook notebook) {
         if (isValid(notebook)) {
-            Notebook savedNotebook = notebookRepository.saveNotebook(notebook);
+            Notebook savedNotebook = notebookRepository.saveOrUpdateNotebook(notebook);
             return new ResponseEntity<>(savedNotebook, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

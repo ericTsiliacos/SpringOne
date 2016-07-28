@@ -18,7 +18,7 @@ public class NotebookRepositoryImpl implements NotebookRepository {
     }
 
     @Override
-    public Notebook saveNotebook(Notebook notebook) {
+    public Notebook saveOrUpdateNotebook(Notebook notebook) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         Notebook savedNotebook = em.merge(notebook);

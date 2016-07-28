@@ -4,6 +4,6 @@ import io.pivotal.notes.models.Notebook;
 
 public interface NotebookRepository {
 
-    Notebook saveNotebook(Notebook notebook);
+    Notebook saveOrUpdateNotebook(Notebook notebook);
 
 }
