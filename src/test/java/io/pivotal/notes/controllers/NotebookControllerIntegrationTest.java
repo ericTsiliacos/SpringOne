@@ -3,6 +3,7 @@ package io.pivotal.notes.controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.pivotal.notes.NotesApplication;
+import io.pivotal.notes.models.Note;
 import io.pivotal.notes.models.Notebook;
 import io.pivotal.notes.repositories.NotebookRepository;
 import org.junit.Test;
@@ -45,7 +46,7 @@ public class NotebookControllerIntegrationTest {
     }
 
     @Test
-    public void should_return400BadRequest_when_titleIsNullOrEmpty() throws Exception {
+    public void should_return400BadRequest_when_notebookTitleIsNullOrEmpty() throws Exception {
         String body = toHttpBody(new Notebook(null, null));
         mockMvc.perform(post("/api/v1/notebook").content(body).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
@@ -77,9 +78,43 @@ public class NotebookControllerIntegrationTest {
                 .andExpect(jsonPath("$.title").value("Notebook 2"));
     }
 
-    private String toHttpBody(Notebook notebook) throws JsonProcessingException {
+    @Test
+    public void should_return200Ok_andSavedNote_when_newNoteSaved() throws Exception {
+        String body = toHttpBody(new Note(null, "Hello, world!"));
+        mockMvc.perform(post("/api/v1/note").content(body).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.body").value("Hello, world!"));
+    }
+
+    @Test
+    public void should_return200Ok_andUpdatedNote_when_noteUpdated() throws Exception {
+        String body = toHttpBody(new Note(null, "Hello, world!"));
+        mockMvc.perform(post("/api/v1/note").content(body).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1));
+
+        body = toHttpBody(new Note(1, "Hello, sun!"));
+        mockMvc.perform(post("/api/v1/note").content(body).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.body").value("Hello, sun!"));
+    }
+
+    @Test
+    public void should_return400BadRequest_when_notebookBodyIsNullOrEmpty() throws Exception {
+        String body = toHttpBody(new Notebook(null, null));
+        mockMvc.perform(post("/api/v1/note").content(body).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+
+        body = toHttpBody(new Notebook(null, ""));
+        mockMvc.perform(post("/api/v1/note").content(body).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
+
+    private String toHttpBody(Object object) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(notebook);
+        return objectMapper.writeValueAsString(object);
     }
 
 }

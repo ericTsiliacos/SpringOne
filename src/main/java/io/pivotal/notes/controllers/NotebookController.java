@@ -1,5 +1,6 @@
 package io.pivotal.notes.controllers;
 
+import io.pivotal.notes.models.Note;
 import io.pivotal.notes.models.Notebook;
 import io.pivotal.notes.repositories.NotebookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +44,23 @@ public class NotebookController {
         return new ResponseEntity<>(notebook, HttpStatus.OK);
     }
 
+
+    @RequestMapping(value = "note", method = RequestMethod.POST)
+    public ResponseEntity<Note> saveOrUpdateNote(@RequestBody Note note) {
+        if (isValid(note)) {
+            Note savedNote = notebookRepository.saveOrUpdateNote(note);
+            return new ResponseEntity<>(savedNote, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
     private boolean isValid(Notebook notebook) {
         return !StringUtils.isEmpty(notebook.getTitle());
+    }
+
+    private boolean isValid(Note note) {
+        return !StringUtils.isEmpty(note.getBody());
     }
 
 }

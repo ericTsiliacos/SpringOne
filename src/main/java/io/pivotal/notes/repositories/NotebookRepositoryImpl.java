@@ -1,5 +1,6 @@
 package io.pivotal.notes.repositories;
 
+import io.pivotal.notes.models.Note;
 import io.pivotal.notes.models.Notebook;
 import org.springframework.stereotype.Service;
 
@@ -32,11 +33,20 @@ public class NotebookRepositoryImpl implements NotebookRepository {
         EntityManager em = emf.createEntityManager();
         return em.createQuery("from Notebook", Notebook.class).getResultList();
     }
-    
+
     @Override
     public Notebook getNotebookById(int id) {
         EntityManager em = emf.createEntityManager();
         return em.find(Notebook.class, id);
+    }
+
+    @Override
+    public Note saveOrUpdateNote(Note note) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Note savedNote = em.merge(note);
+        em.getTransaction().commit();
+        return savedNote;
     }
 
 }

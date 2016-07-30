@@ -1,6 +1,7 @@
 package io.pivotal.notes.repositories;
 
 import io.pivotal.notes.NotesApplication;
+import io.pivotal.notes.models.Note;
 import io.pivotal.notes.models.Notebook;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -63,5 +64,23 @@ public class NotebookRepositoryImplTest {
         Notebook notebook = notebookRepository.getNotebookById(2);
         assertThat(notebook.getId()).isEqualTo(2);
         assertThat(notebook.getTitle()).isEqualTo("Title 2");
+    }
+
+    @Test
+    public void should_saveNewNote() {
+        Note note = notebookRepository.saveOrUpdateNote(new Note(null, "Hello, world!"));
+
+        assertThat(note.getId()).isEqualTo(1);
+        assertThat(note.getBody()).isEqualTo("Hello, world!");
+    }
+
+    @Test
+    public void should_updateNote() {
+        Note note = notebookRepository.saveOrUpdateNote(new Note(null, "Hello, world!"));
+        note.setBody("Hello, sun!");
+
+        note = notebookRepository.saveOrUpdateNote(note);
+        assertThat(note.getId()).isEqualTo(1);
+        assertThat(note.getBody()).isEqualTo("Hello, sun!");
     }
 }
