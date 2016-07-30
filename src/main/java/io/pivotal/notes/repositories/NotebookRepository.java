@@ -8,5 +8,6 @@ public interface NotebookRepository {
 
     Notebook saveOrUpdateNotebook(Notebook notebook);
     List<Notebook> getNotebooks();
+    Notebook getNotebookById(int id);
 
 }

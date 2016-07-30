@@ -67,6 +67,16 @@ public class NotebookControllerIntegrationTest {
                 .andExpect(jsonPath("$[1].title").value("Notebook 2"));
     }
 
+    @Test
+    public void should_return200Ok_andNotebook_when_gettingNotebookById() throws Exception {
+        notebookRepository.saveOrUpdateNotebook(new Notebook(null, "Notebook 1"));
+        notebookRepository.saveOrUpdateNotebook(new Notebook(null, "Notebook 2"));
+        mockMvc.perform(get("/api/v1/notebook?id=2"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(2))
+                .andExpect(jsonPath("$.title").value("Notebook 2"));
+    }
+
     private String toHttpBody(Notebook notebook) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(notebook);

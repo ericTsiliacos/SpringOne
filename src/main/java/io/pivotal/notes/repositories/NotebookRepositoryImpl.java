@@ -32,5 +32,11 @@ public class NotebookRepositoryImpl implements NotebookRepository {
         EntityManager em = emf.createEntityManager();
         return em.createQuery("from Notebook", Notebook.class).getResultList();
     }
+    
+    @Override
+    public Notebook getNotebookById(int id) {
+        EntityManager em = emf.createEntityManager();
+        return em.find(Notebook.class, id);
+    }
 
 }

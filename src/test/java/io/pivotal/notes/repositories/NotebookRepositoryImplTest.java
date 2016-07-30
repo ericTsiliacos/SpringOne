@@ -54,4 +54,14 @@ public class NotebookRepositoryImplTest {
         assertThat(notebooks.get(1).getId()).isEqualTo(2);
         assertThat(notebooks.get(1).getTitle()).isEqualTo("Title 2");
     }
+
+    @Test
+    public void should_getNotebookById() {
+        notebookRepository.saveOrUpdateNotebook(new Notebook(null, "Title 1"));
+        notebookRepository.saveOrUpdateNotebook(new Notebook(null, "Title 2"));
+
+        Notebook notebook = notebookRepository.getNotebookById(2);
+        assertThat(notebook.getId()).isEqualTo(2);
+        assertThat(notebook.getTitle()).isEqualTo("Title 2");
+    }
 }
