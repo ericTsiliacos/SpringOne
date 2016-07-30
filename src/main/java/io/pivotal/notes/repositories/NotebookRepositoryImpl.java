@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
+import java.util.List;
 
 @Service
 public class NotebookRepositoryImpl implements NotebookRepository {
@@ -24,6 +25,12 @@ public class NotebookRepositoryImpl implements NotebookRepository {
         Notebook savedNotebook = em.merge(notebook);
         em.getTransaction().commit();
         return savedNotebook;
+    }
+
+    @Override
+    public List<Notebook> getNotebooks() {
+        EntityManager em = emf.createEntityManager();
+        return em.createQuery("from Notebook", Notebook.class).getResultList();
     }
 
 }

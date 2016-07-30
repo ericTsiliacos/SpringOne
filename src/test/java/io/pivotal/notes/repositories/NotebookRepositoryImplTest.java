@@ -9,6 +9,8 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -39,5 +41,17 @@ public class NotebookRepositoryImplTest {
         notebook = notebookRepository.saveOrUpdateNotebook(notebook);
         assertThat(notebook.getId()).isEqualTo(1);
         assertThat(notebook.getTitle()).isEqualTo("New Title");
+    }
+
+    @Test
+    public void should_getNotebooks() {
+        notebookRepository.saveOrUpdateNotebook(new Notebook(null, "Title 1"));
+        notebookRepository.saveOrUpdateNotebook(new Notebook(null, "Title 2"));
+
+        List<Notebook> notebooks = notebookRepository.getNotebooks();
+        assertThat(notebooks.get(0).getId()).isEqualTo(1);
+        assertThat(notebooks.get(0).getTitle()).isEqualTo("Title 1");
+        assertThat(notebooks.get(1).getId()).isEqualTo(2);
+        assertThat(notebooks.get(1).getTitle()).isEqualTo("Title 2");
     }
 }

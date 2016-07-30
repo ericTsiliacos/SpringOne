@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -25,11 +26,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class NotebookControllerIntegrationTest {
 
     private MockMvc mockMvc;
+    private NotebookRepository notebookRepository;
 
     @Autowired
     public void setNotebookRepository(NotebookRepository notebookRepository) {
         NotebookController controller = new NotebookController(notebookRepository);
         this.mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+        this.notebookRepository = notebookRepository;
     }
 
     @Test
@@ -50,6 +53,18 @@ public class NotebookControllerIntegrationTest {
         body = toHttpBody(new Notebook(null, ""));
         mockMvc.perform(post("/api/v1/notebook").content(body).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void should_return200Ok_andNotebooks_when_gettingAllNotebooks() throws Exception {
+        notebookRepository.saveOrUpdateNotebook(new Notebook(null, "Notebook 1"));
+        notebookRepository.saveOrUpdateNotebook(new Notebook(null, "Notebook 2"));
+        mockMvc.perform(get("/api/v1/notebooks"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].id").value(1))
+                .andExpect(jsonPath("$[0].title").value("Notebook 1"))
+                .andExpect(jsonPath("$[1].id").value(2))
+                .andExpect(jsonPath("$[1].title").value("Notebook 2"));
     }
 
     private String toHttpBody(Notebook notebook) throws JsonProcessingException {

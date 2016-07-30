@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1")
 public class NotebookController {
@@ -30,6 +32,12 @@ public class NotebookController {
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @RequestMapping(value = "notebooks", method = RequestMethod.GET)
+    public ResponseEntity<List<Notebook>> getAllNotebooks() {
+        List<Notebook> notebooks = notebookRepository.getNotebooks();
+        return new ResponseEntity<>(notebooks, HttpStatus.OK);
     }
 
     private boolean isValid(Notebook notebook) {
