@@ -19,12 +19,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class NotebookRepositoryImplTest {
 
-    private NotebookRepository notebookRepository;
-
     @Autowired
-    public void setNotebookRepository(NotebookRepository notebookRepository) {
-        this.notebookRepository = notebookRepository;
-    }
+    private NotebookRepository notebookRepository;
 
     @Test
     public void should_saveNewNotebook() {
