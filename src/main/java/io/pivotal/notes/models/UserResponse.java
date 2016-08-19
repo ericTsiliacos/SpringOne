@@ -1,24 +1,14 @@
 package io.pivotal.notes.models;
 
-public class UserResponse {
+public class UserResponse extends BaseResponse {
 
-    private int id;
+    private User user;
 
-    private String username;
-
-    public int getId() {
-        return id;
+    public User getUser() {
+        return user;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

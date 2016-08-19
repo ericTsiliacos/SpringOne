@@ -1,7 +1,7 @@
 package io.pivotal.notes.controllers;
 
-import io.pivotal.notes.models.Note;
-import io.pivotal.notes.models.Notebook;
+import io.pivotal.notes.models.*;
+import io.pivotal.notes.models.Error;
 import io.pivotal.notes.repositories.NotebookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,22 +14,25 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/v1", produces = MediaType.APPLICATION_JSON_VALUE)
-public class NotebookController {
+class NotebookController {
 
     private final NotebookRepository notebookRepository;
 
     @Autowired
-    public NotebookController(NotebookRepository notebookRepository) {
+    NotebookController(NotebookRepository notebookRepository) {
         this.notebookRepository = notebookRepository;
     }
 
     @RequestMapping(value = "notebook", method = RequestMethod.POST)
-    public ResponseEntity<Notebook> saveOrUpdateNotebook(@RequestBody Notebook notebook) {
+    public ResponseEntity<NotebookResponse> saveOrUpdateNotebook(@RequestBody Notebook notebook) {
+        NotebookResponse response = new NotebookResponse();
         if (isValid(notebook)) {
             Notebook savedNotebook = notebookRepository.saveOrUpdateNotebook(notebook);
-            return new ResponseEntity<>(savedNotebook, HttpStatus.OK);
+            response.setNotebook(savedNotebook);
+            return new ResponseEntity<>(response, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            response.setError(new Error("Title cannot be blank"));
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -40,18 +43,23 @@ public class NotebookController {
     }
 
     @RequestMapping(value = "notebook", method = RequestMethod.GET)
-    public ResponseEntity<Notebook> getNotebookById(@RequestParam int id) {
+    public ResponseEntity<NotebookResponse> getNotebookById(@RequestParam int id) {
+        NotebookResponse response = new NotebookResponse();
         Notebook notebook = notebookRepository.getNotebookById(id);
-        return new ResponseEntity<>(notebook, HttpStatus.OK);
+        response.setNotebook(notebook);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @RequestMapping(value = "note", method = RequestMethod.POST)
-    public ResponseEntity<Note> saveOrUpdateNote(@RequestBody Note note) {
+    public ResponseEntity<NoteResponse> saveOrUpdateNote(@RequestBody Note note) {
+        NoteResponse noteResponse = new NoteResponse();
         if (isValid(note)) {
             Note savedNote = notebookRepository.saveOrUpdateNote(note);
-            return new ResponseEntity<>(savedNote, HttpStatus.OK);
+            noteResponse.setNote(savedNote);
+            return new ResponseEntity<>(noteResponse, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            noteResponse.setError(new Error("Body cannot be blank"));
+            return new ResponseEntity<>(noteResponse, HttpStatus.BAD_REQUEST);
         }
     }
 

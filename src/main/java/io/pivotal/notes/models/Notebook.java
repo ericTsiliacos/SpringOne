@@ -13,7 +13,7 @@ public class Notebook {
     private Integer id;
     private String title;
 
-    protected Notebook() {}
+    public Notebook() {}
 
     public Notebook(Integer id, String title) {
         this.id = id;

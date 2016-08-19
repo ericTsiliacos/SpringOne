@@ -47,8 +47,9 @@ public class UserControllerIntegrationTest {
         String body = objectMapper.writeValueAsString(new UserRequest(null, USER, PASS));
         mockMvc.perform(post("/api/v1/user").content(body).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.username").value(USER));
+                .andExpect(jsonPath("$.user.id").value(1))
+                .andExpect(jsonPath("$.user.username").value(USER))
+                .andExpect(jsonPath("$.error").doesNotExist());
     }
 
     @Test
@@ -57,30 +58,43 @@ public class UserControllerIntegrationTest {
         String body = objectMapper.writeValueAsString(new UserRequest(1, USER, PASS));
         mockMvc.perform(post("/api/v1/user").content(body).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.username").value(USER));
+                .andExpect(jsonPath("$.user.id").value(1))
+                .andExpect(jsonPath("$.user.username").value(USER))
+                .andExpect(jsonPath("$.error").doesNotExist());
     }
 
     @Test
     public void should_return400BadRequest_when_usernameNullOrEmpty() throws Exception {
         String body = objectMapper.writeValueAsString(new UserRequest(null, null, PASS));
         mockMvc.perform(post("/api/v1/user").content(body).contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.error.message").value("Username and/or password cannot be blank"))
+                .andExpect(jsonPath("$.user.id").doesNotExist())
+                .andExpect(jsonPath("$.user.username").doesNotExist());
 
         body = objectMapper.writeValueAsString(new UserRequest(null, "", PASS));
         mockMvc.perform(post("/api/v1/user").content(body).contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.error.message").value("Username and/or password cannot be blank"))
+                .andExpect(jsonPath("$.user.id").doesNotExist())
+                .andExpect(jsonPath("$.user.username").doesNotExist());
     }
 
     @Test
     public void should_return400BadRequest_when_passwordNullOrEmpty() throws Exception {
         String body = objectMapper.writeValueAsString(new UserRequest(null, USER, null));
         mockMvc.perform(post("/api/v1/user").content(body).contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.error.message").value("Username and/or password cannot be blank"))
+                .andExpect(jsonPath("$.user.id").doesNotExist())
+                .andExpect(jsonPath("$.user.username").doesNotExist());
 
         body = objectMapper.writeValueAsString(new UserRequest(null, USER, ""));
         mockMvc.perform(post("/api/v1/user").content(body).contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.error.message").value("Username and/or password cannot be blank"))
+                .andExpect(jsonPath("$.user.id").doesNotExist())
+                .andExpect(jsonPath("$.user.username").doesNotExist());
     }
 
     @Test
@@ -88,13 +102,17 @@ public class UserControllerIntegrationTest {
         userRepository.saveOrUpdateUser(null , USER, PASS);
         mockMvc.perform(get("/api/v1/user/1"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.username").value(USER));
+                .andExpect(jsonPath("$.user.id").value(1))
+                .andExpect(jsonPath("$.user.username").value(USER))
+                .andExpect(jsonPath("$.error").doesNotExist());
     }
 
     @Test
     public void should_return400BadRequest_whenNotFound() throws Exception {
         mockMvc.perform(get("/api/v1/user/1"))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.error.message").value("User not found"))
+                .andExpect(jsonPath("$.user.id").doesNotExist())
+                .andExpect(jsonPath("$.user.username").doesNotExist());
     }
 }

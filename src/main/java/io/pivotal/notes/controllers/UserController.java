@@ -1,5 +1,6 @@
 package io.pivotal.notes.controllers;
 
+import io.pivotal.notes.models.Error;
 import io.pivotal.notes.models.User;
 import io.pivotal.notes.models.UserRequest;
 import io.pivotal.notes.models.UserResponse;
@@ -14,7 +15,7 @@ import static org.springframework.util.StringUtils.*;
 
 @RestController
 @RequestMapping(value = "/api/v1", produces = MediaType.APPLICATION_JSON_VALUE)
-public class UserController {
+class UserController {
 
     private UserRepository userRepository;
 
@@ -25,28 +26,30 @@ public class UserController {
 
     @RequestMapping(value = "user", method = RequestMethod.POST)
     public ResponseEntity<UserResponse> saveOrUpdateUser(@RequestBody UserRequest user) {
+        UserResponse response = new UserResponse();
+
         if (valid(user)) {
             User savedUser = userRepository.saveOrUpdateUser(user.getId(), user.getUsername(), user.getPassword());
-            UserResponse response = new UserResponse();
-            response.setId(savedUser.getId());
-            response.setUsername(savedUser.getUsername());
+            response.setUser(savedUser);
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
 
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        response.setError(new Error("Username and/or password cannot be blank"));
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
     @RequestMapping(value = "user/{id}", method = RequestMethod.GET)
     public ResponseEntity<UserResponse> getUserById(@PathVariable int id) {
+        UserResponse response = new UserResponse();
+
         User user = userRepository.getUserById(id);
-        if (user == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        if (user != null) {
+            response.setUser(user);
+            return new ResponseEntity<>(response, HttpStatus.OK);
         }
 
-        UserResponse response = new UserResponse();
-        response.setId(user.getId());
-        response.setUsername(user.getUsername());
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        response.setError(new Error("User not found"));
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
     private boolean valid(UserRequest user) {

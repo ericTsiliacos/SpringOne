@@ -1,5 +1,7 @@
 package io.pivotal.notes.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,6 +14,7 @@ public class User {
     @Column(unique = true)
     private String username;
 
+    @JsonIgnore
     private String encryptedPassword;
 
     protected User() {
