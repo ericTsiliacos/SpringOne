@@ -15,14 +15,14 @@ public class UserRepositoryImpl implements UserRepository {
     private EntityManagerFactory emf;
     private EncryptionTool encryptionTool;
 
-    @PersistenceUnit
-    void setEmf(EntityManagerFactory emf) {
-        this.emf = emf;
-    }
-
     @Autowired
     UserRepositoryImpl(EncryptionTool encryptionTool) {
         this.encryptionTool = encryptionTool;
+    }
+
+    @PersistenceUnit
+    void setEmf(EntityManagerFactory emf) {
+        this.emf = emf;
     }
 
     @Override

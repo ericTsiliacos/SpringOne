@@ -1,7 +1,7 @@
 package io.pivotal.notes.controllers;
 
-import io.pivotal.notes.models.*;
 import io.pivotal.notes.models.Error;
+import io.pivotal.notes.models.*;
 import io.pivotal.notes.repositories.NotebookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
