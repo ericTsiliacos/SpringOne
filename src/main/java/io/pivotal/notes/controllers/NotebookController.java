@@ -5,6 +5,7 @@ import io.pivotal.notes.models.Notebook;
 import io.pivotal.notes.repositories.NotebookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping(value = "/api/v1", produces = MediaType.APPLICATION_JSON_VALUE)
 public class NotebookController {
 
     private final NotebookRepository notebookRepository;
@@ -43,7 +44,6 @@ public class NotebookController {
         Notebook notebook = notebookRepository.getNotebookById(id);
         return new ResponseEntity<>(notebook, HttpStatus.OK);
     }
-
 
     @RequestMapping(value = "note", method = RequestMethod.POST)
     public ResponseEntity<Note> saveOrUpdateNote(@RequestBody Note note) {

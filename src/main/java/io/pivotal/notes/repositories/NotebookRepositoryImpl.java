@@ -2,14 +2,14 @@ package io.pivotal.notes.repositories;
 
 import io.pivotal.notes.models.Note;
 import io.pivotal.notes.models.Notebook;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 import java.util.List;
 
-@Service
+@Repository
 public class NotebookRepositoryImpl implements NotebookRepository {
 
     private EntityManagerFactory emf;
