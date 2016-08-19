@@ -42,8 +42,8 @@ class NotebookController {
         return new ResponseEntity<>(notebooks, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "notebook", method = RequestMethod.GET)
-    public ResponseEntity<NotebookResponse> getNotebookById(@RequestParam int id) {
+    @RequestMapping(value = "notebook/{id}", method = RequestMethod.GET)
+    public ResponseEntity<NotebookResponse> getNotebookById(@PathVariable int id) {
         NotebookResponse response = new NotebookResponse();
         Notebook notebook = notebookRepository.getNotebookById(id);
         response.setNotebook(notebook);

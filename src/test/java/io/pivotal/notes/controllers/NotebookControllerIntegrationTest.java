@@ -84,7 +84,7 @@ public class NotebookControllerIntegrationTest {
     public void should_return200Ok_andNotebook_when_gettingNotebookById() throws Exception {
         notebookRepository.saveOrUpdateNotebook(new Notebook(null, "Notebook 1"));
         notebookRepository.saveOrUpdateNotebook(new Notebook(null, "Notebook 2"));
-        mockMvc.perform(get("/api/v1/notebook?id=2"))
+        mockMvc.perform(get("/api/v1/notebook/2"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.notebook.id").value(2))
                 .andExpect(jsonPath("$.notebook.title").value("Notebook 2"))
