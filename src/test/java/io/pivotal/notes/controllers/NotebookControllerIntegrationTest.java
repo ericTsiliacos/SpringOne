@@ -1,7 +1,6 @@
 package io.pivotal.notes.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.pivotal.notes.NotesApplication;
 import io.pivotal.notes.models.Note;
 import io.pivotal.notes.models.Notebook;
 import io.pivotal.notes.repositories.NotebookRepository;
@@ -9,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -22,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = NotesApplication.class)
+@SpringBootTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class NotebookControllerIntegrationTest {
 
