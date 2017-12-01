@@ -29,9 +29,6 @@ So that I can fetch a note and read its contents",https://www.pivotaltracker.com
 So that I can save related notes to a notebook",https://www.pivotaltracker.com/story/show/139198555,Izabela Gomes
 139198557,Get notebook by id should return a 404 when the notebook cannot be found,"",1,"Apr 3, 2017","Apr 9, 2017",bug,,unstarted,"Jul 29, 2016",,,Izabela Gomes,"Current it returns an HTTP 200 with an empty body.
 It should return a 404 and an error message indicating the notebook cannot be found.",https://www.pivotaltracker.com/story/show/139198557,Izabela Gomes
-139198559,Authenticate user before allowing user to update password,"",1,"Apr 3, 2017","Apr 9, 2017",bug,,unstarted,"Aug 18, 2016",,,Izabela Gomes,"Right now, a user can update their password without inputting their old one.
-As a user, I should provide my old password when setting a new password,
-otherwise someone can easily change my password",https://www.pivotaltracker.com/story/show/139198559,Izabela Gomes
 139198561,Find a notebook by title,"",1,"Apr 3, 2017","Apr 9, 2017",feature,1,unstarted,"Jul 29, 2016",,,Izabela Gomes,"As a user I want to find a notebook by title
 So that I can search for a notebook without having to remember or know its id.",https://www.pivotaltracker.com/story/show/139198561,Izabela Gomes
 139198563,Find a note by its contents,"",1,"Apr 3, 2017","Apr 9, 2017",feature,1,unstarted,"Jul 29, 2016",,,Izabela Gomes,"As a user I want to find a note by its contents
