@@ -1,50 +1,53 @@
 Id,Title,Labels,Iteration,Iteration Start,Iteration End,Type,Estimate,Current State,Created at,Accepted at,Deadline,Requested By,Description,URL,Owned By
-139198535,Create an api to add/update a notebook,"",1,"Apr 3, 2017","Apr 9, 2017",feature,1,unstarted,"Jul 26, 2016",,,Izabela Gomes,"As a user I want to be able to create a notebook with a title
+152936231,Create an api to get all notebooks,"",1,"Nov 27, 2017","Dec 3, 2017",feature,1,accepted,"Jul 26, 2016","Dec 1, 2017",,Rebecca McInerney,"As a user I want to get all my notebooks
+So that I can see all my notebooks",https://www.pivotaltracker.com/story/show/152936231,Rebecca McInerney
+152936238,Create an api to get a user,"",1,"Nov 27, 2017","Dec 3, 2017",feature,0,accepted,"Aug 17, 2016","Dec 1, 2017",,Rebecca McInerney,As a user I want to get my user details,https://www.pivotaltracker.com/story/show/152936238,Rebecca McInerney
+152936236,Create an api to add users,"",1,"Nov 27, 2017","Dec 3, 2017",feature,1,delivered,"Aug 17, 2016",,,Rebecca McInerney,"I want to be able to add users
+so that multiple users can add notes
+
+A user should have a username and password",https://www.pivotaltracker.com/story/show/152936236,Rebecca McInerney
+152936234,Create an api to get a notebook,"",1,"Nov 27, 2017","Dec 3, 2017",feature,1,delivered,"Jul 26, 2016",,,Rebecca McInerney,"As a user I want to get a single notebook
+So that I can see its contents",https://www.pivotaltracker.com/story/show/152936234,Rebecca McInerney
+152936229,Create an api to add/update a notebook,"",1,"Nov 27, 2017","Dec 3, 2017",feature,1,finished,"Jul 26, 2016",,,Rebecca McInerney,"As a user I want to be able to create a notebook with a title
 So that I can add notes
 
 As a user I want to be able to update the notebook title
-So that I can rename my notebook whenever I like",https://www.pivotaltracker.com/story/show/139198535,
-139198537,Create an api to get all notebooks,"",1,"Apr 3, 2017","Apr 9, 2017",feature,1,unstarted,"Jul 26, 2016",,,Izabela Gomes,"As a user I want to get all my notebooks
-So that I can see all my notebooks",https://www.pivotaltracker.com/story/show/139198537,
-139198539,Create an api to add and edit a note,"",1,"Apr 3, 2017","Apr 9, 2017",feature,1,unstarted,"Jul 26, 2016",,,Izabela Gomes,"As a user I want to add a note
+So that I can rename my notebook whenever I like",https://www.pivotaltracker.com/story/show/152936229,Rebecca McInerney
+152936232,Create an api to add and edit a note,"",1,"Nov 27, 2017","Dec 3, 2017",feature,1,finished,"Jul 26, 2016",,,Rebecca McInerney,"As a user I want to add a note
 So that I can save a note online
 
 As a user I want to edit a note
-So that I can update it when I need to",https://www.pivotaltracker.com/story/show/139198539,
-139198541,Create an api to get a notebook,"",1,"Apr 3, 2017","Apr 9, 2017",feature,1,unstarted,"Jul 26, 2016",,,Izabela Gomes,"As a user I want to get a single notebook
-So that I can see its contents",https://www.pivotaltracker.com/story/show/139198541,
-139198543,Create an api to add users,"",1,"Apr 3, 2017","Apr 9, 2017",feature,1,unstarted,"Aug 17, 2016",,,Izabela Gomes,"I want to be able to add users
-so that multiple users can add notes
-
-A user should have a username and password",https://www.pivotaltracker.com/story/show/139198543,
-139198545,Create an api to get a user,"",1,"Apr 3, 2017","Apr 9, 2017",feature,0,unstarted,"Aug 17, 2016",,,Izabela Gomes,As a user I want to get my user details,https://www.pivotaltracker.com/story/show/139198545,
-139198547,Return an error message when returning a http 4xx error,"",1,"Apr 3, 2017","Apr 9, 2017",bug,,unstarted,"Aug 18, 2016",,,Izabela Gomes,"When there is a HTTP 4xx error, no error message is returned.
+So that I can update it when I need to",https://www.pivotaltracker.com/story/show/152936232,Rebecca McInerney
+152936240,Return an error message when returning a http 4xx error,"",1,"Nov 27, 2017","Dec 3, 2017",bug,,finished,"Aug 18, 2016",,,Rebecca McInerney,"When there is a HTTP 4xx error, no error message is returned.
 As a user, I want to see an error message when there is a HTTP 4xx error
-so that I know what I need to do to make a proper api call",https://www.pivotaltracker.com/story/show/139198547,
-139198553,Create an api to delete a note,"",1,"Apr 3, 2017","Apr 9, 2017",feature,0,unstarted,"Jul 26, 2016",,,Izabela Gomes,"As a user I want to delete a single note
-So that I can get rid of my old notes",https://www.pivotaltracker.com/story/show/139198553,Izabela Gomes
-139198551,Create an api to get a note,"",1,"Apr 3, 2017","Apr 9, 2017",feature,0,unstarted,"Jul 26, 2016",,,Izabela Gomes,"As a user I want to get a single note
-So that I can fetch a note and read its contents",https://www.pivotaltracker.com/story/show/139198551,Izabela Gomes
-139198555,Create an api to add a note to a notebook,"",1,"Apr 3, 2017","Apr 9, 2017",feature,1,unstarted,"Jul 26, 2016",,,Izabela Gomes,"As a user I want to add a note to a notebook
-So that I can save related notes to a notebook",https://www.pivotaltracker.com/story/show/139198555,Izabela Gomes
-139198557,Get notebook by id should return a 404 when the notebook cannot be found,"",1,"Apr 3, 2017","Apr 9, 2017",bug,,unstarted,"Jul 29, 2016",,,Izabela Gomes,"Current it returns an HTTP 200 with an empty body.
-It should return a 404 and an error message indicating the notebook cannot be found.",https://www.pivotaltracker.com/story/show/139198557,Izabela Gomes
-139198561,Find a notebook by title,"",1,"Apr 3, 2017","Apr 9, 2017",feature,1,unstarted,"Jul 29, 2016",,,Izabela Gomes,"As a user I want to find a notebook by title
-So that I can search for a notebook without having to remember or know its id.",https://www.pivotaltracker.com/story/show/139198561,Izabela Gomes
-139198563,Find a note by its contents,"",1,"Apr 3, 2017","Apr 9, 2017",feature,1,unstarted,"Jul 29, 2016",,,Izabela Gomes,"As a user I want to find a note by its contents
-So that I can fetch a note without having to remember or know its id",https://www.pivotaltracker.com/story/show/139198563,Izabela Gomes
-139198565,Create an api to delete a notebook and associated notes,"",1,"Apr 3, 2017","Apr 9, 2017",feature,1,unstarted,"Jul 26, 2016",,,Izabela Gomes,"As a user I want to delete a notebook
-So that the notebooks and notes inside no longer exist",https://www.pivotaltracker.com/story/show/139198565,Izabela Gomes
-139198567,Tie the notebooks to users,intermediate,1,"Apr 3, 2017","Apr 9, 2017",feature,2,unstarted,"Aug 17, 2016",,,Izabela Gomes,"Currently, notes and notebooks are not tied to users.
+so that I know what I need to do to make a proper api call",https://www.pivotaltracker.com/story/show/152936240,Rebecca McInerney
+152936242,Create an api to delete a note,"",1,"Nov 27, 2017","Dec 3, 2017",feature,0,unstarted,"Jul 26, 2016",,,Rebecca McInerney,"As a user I want to delete a single note
+So that I can get rid of my old notes",https://www.pivotaltracker.com/story/show/152936242,
+152936244,Create an api to get a note,"",1,"Nov 27, 2017","Dec 3, 2017",feature,0,unstarted,"Jul 26, 2016",,,Rebecca McInerney,"As a user I want to get a single note
+So that I can fetch a note and read its contents",https://www.pivotaltracker.com/story/show/152936244,
+152936246,Create an api to add a note to a notebook,"",1,"Nov 27, 2017","Dec 3, 2017",feature,1,unstarted,"Jul 26, 2016",,,Rebecca McInerney,"As a user I want to add a note to a notebook
+So that I can save related notes to a notebook",https://www.pivotaltracker.com/story/show/152936246,
+152936248,Get notebook by id should return a 404 when the notebook cannot be found,"",1,"Nov 27, 2017","Dec 3, 2017",bug,,unstarted,"Jul 29, 2016",,,Rebecca McInerney,"Current it returns an HTTP 200 with an empty body.
+It should return a 404 and an error message indicating the notebook cannot be found.",https://www.pivotaltracker.com/story/show/152936248,
+152936249,Authenticate user before allowing user to update password,"",1,"Nov 27, 2017","Dec 3, 2017",bug,,unstarted,"Aug 18, 2016",,,Rebecca McInerney,"Right now, a user can update their password without inputting their old one.
+As a user, I should provide my old password when setting a new password,
+otherwise someone can easily change my password",https://www.pivotaltracker.com/story/show/152936249,
+152936251,Find a notebook by title,"",1,"Nov 27, 2017","Dec 3, 2017",feature,1,unstarted,"Jul 29, 2016",,,Rebecca McInerney,"As a user I want to find a notebook by title
+So that I can search for a notebook without having to remember or know its id.",https://www.pivotaltracker.com/story/show/152936251,
+152936252,Find a note by its contents,"",1,"Nov 27, 2017","Dec 3, 2017",feature,1,unstarted,"Jul 29, 2016",,,Rebecca McInerney,"As a user I want to find a note by its contents
+So that I can fetch a note without having to remember or know its id",https://www.pivotaltracker.com/story/show/152936252,
+152936253,Create an api to delete a notebook and associated notes,"",1,"Nov 27, 2017","Dec 3, 2017",feature,1,unstarted,"Jul 26, 2016",,,Rebecca McInerney,"As a user I want to delete a notebook
+So that the notebooks and notes inside no longer exist",https://www.pivotaltracker.com/story/show/152936253,
+152936254,Tie the notebooks to users,intermediate,2,"Dec 4, 2017","Dec 10, 2017",feature,2,unstarted,"Aug 17, 2016",,,Rebecca McInerney,"Currently, notes and notebooks are not tied to users.
 
 A user should only be able to add a notebook to a user account.
-A user should only be able to add a note to a notebook under a user account.",https://www.pivotaltracker.com/story/show/139198567,Izabela Gomes
-139198573,Allow the user to add an attachment to a note,advanced,2,"Apr 10, 2017","Apr 16, 2017",feature,3,unstarted,"Aug 10, 2016",,,Izabela Gomes,"As a user I want to add images to my notes
+A user should only be able to add a note to a notebook under a user account.",https://www.pivotaltracker.com/story/show/152936254,
+152936255,Allow the user to add an attachment to a note,advanced,2,"Dec 4, 2017","Dec 10, 2017",feature,3,unstarted,"Aug 10, 2016",,,Rebecca McInerney,"As a user I want to add images to my notes
 So that I can link related images, pdfs, word docs, etc to my note
 
-(A smaller task might be to support only images instead of arbitrary files)",https://www.pivotaltracker.com/story/show/139198573,Izabela Gomes
-139198569,Authenticate user before updating note or notebook,intermediate,2,"Apr 10, 2017","Apr 16, 2017",feature,2,unstarted,"Aug 18, 2016",,,Izabela Gomes,"Right now, anyone can update any note.
+(A smaller task might be to support only images instead of arbitrary files)",https://www.pivotaltracker.com/story/show/152936255,
+152936257,Authenticate user before updating note or notebook,intermediate,2,"Dec 4, 2017","Dec 10, 2017",feature,2,unstarted,"Aug 18, 2016",,,Rebecca McInerney,"Right now, anyone can update any note.
 As a user I should only be able to update my notebooks/notes
 Otherwise that would be a security problem.
 
-(A smaller task might be to do this for one or two endpoints. The rest of the endpoints will probably require the same work)",https://www.pivotaltracker.com/story/show/139198569,Izabela Gomes
+(A smaller task might be to do this for one or two endpoints. The rest of the endpoints will probably require the same work)",https://www.pivotaltracker.com/story/show/152936257,
